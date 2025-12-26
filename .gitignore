@@ -68,6 +68,11 @@ Desktop.ini
 # Optional npm cache
 .npm
 
+# Lock files (optional - uncomment if you want to ignore)
+package-lock.json
+# pnpm-lock.yaml
+# yarn.lock
+
 # Optional eslint cache
 .eslintcache
 
