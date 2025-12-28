@@ -81,3 +81,5 @@ package-lock.json
 
 # Local scripts (if needed)
 scripts/cleanup_tracked_ignored.ps1
+
+/lib/generated/prisma

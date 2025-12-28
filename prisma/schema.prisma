@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model adminaccount {
+  id       String @id @db.VarChar(50)
+  userName String @unique(map: "userName") @db.VarChar(100)
+  password String @db.VarChar(255)
+}
+
+model attendance {
+  AttendanceId    String             @id @db.VarChar(50)
+  studentId       String             @db.VarChar(50)
+  subjectId       String             @db.VarChar(50)
+  sessionId       String             @db.VarChar(50)
+  enrollmentId    String             @db.VarChar(50)
+  checked_in_at   DateTime?          @default(now()) @db.Timestamp(0)
+  status          attendance_status? @default(ABSENT)
+  imageId         String?            @db.VarChar(50)
+  studentaccount  studentaccount     @relation(fields: [studentId], references: [studentId], onDelete: NoAction, onUpdate: NoAction, map: "attendance_ibfk_1")
+  subject         subject            @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction, map: "attendance_ibfk_2")
+  enrollment      enrollment         @relation(fields: [enrollmentId], references: [enrollmentId], onDelete: NoAction, onUpdate: NoAction, map: "attendance_ibfk_3")
+  classsession    classsession       @relation(fields: [sessionId], references: [sessionId], onDelete: NoAction, onUpdate: NoAction, map: "attendance_ibfk_4")
+  captured_images captured_images?
+
+  @@index([enrollmentId], map: "enrollmentId")
+  @@index([sessionId], map: "sessionId")
+  @@index([studentId], map: "studentId")
+  @@index([subjectId], map: "subjectId")
+}
+
+model captured_images {
+  imageId            String                              @id @db.VarChar(50)
+  imageData          Bytes?                              @db.Blob
+  studentId          String?                             @db.VarChar(50)
+  attendanceId       String                              @unique(map: "unique_attendance_image") @db.VarChar(50)
+  confidence         Float?                              @db.Float
+  recognition_result captured_images_recognition_result?
+  subjectId          String?                             @db.VarChar(50)
+  timeSlotId         String?                             @db.VarChar(50)
+  captured_at        DateTime?                           @default(now()) @db.Timestamp(0)
+  ip_address         String?                             @db.VarChar(45)
+  studentaccount     studentaccount?                     @relation(fields: [studentId], references: [studentId], onDelete: NoAction, onUpdate: NoAction, map: "captured_images_ibfk_1")
+  subject            subject?                            @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction, map: "captured_images_ibfk_2")
+  timeslot           timeslot?                           @relation(fields: [timeSlotId], references: [timeSlotId], onDelete: NoAction, onUpdate: NoAction, map: "captured_images_ibfk_3")
+  attendance         attendance                          @relation(fields: [attendanceId], references: [AttendanceId], onDelete: Cascade, onUpdate: NoAction, map: "captured_images_ibfk_4")
+
+  @@index([studentId], map: "studentId")
+  @@index([subjectId], map: "subjectId")
+  @@index([timeSlotId], map: "timeSlotId")
+}
+
+model classsession {
+  sessionId      String                       @id @db.VarChar(50)
+  subjectId      String                       @db.VarChar(50)
+  timeSlotId     String                       @db.VarChar(50)
+  session_date   DateTime                     @db.Date
+  session_status classsession_session_status? @default(SCHEDULED)
+  created_at     DateTime?                    @default(now()) @db.Timestamp(0)
+  started_at     DateTime?                    @db.Timestamp(0)
+  ended_at       DateTime?                    @db.Timestamp(0)
+  notes          String?                      @db.Text
+  attendance     attendance[]
+  subject        subject                      @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction, map: "classsession_ibfk_1")
+  timeslot       timeslot                     @relation(fields: [timeSlotId], references: [timeSlotId], onDelete: NoAction, onUpdate: NoAction, map: "classsession_ibfk_2")
+
+  @@unique([timeSlotId, session_date], map: "unique_session")
+  @@index([subjectId], map: "subjectId")
+}
+
+model enrollment {
+  enrollmentId   String         @id @db.VarChar(50)
+  studentId      String         @db.VarChar(50)
+  subjectId      String         @db.VarChar(50)
+  semesterId     String         @db.VarChar(50)
+  attendance     attendance[]
+  studentaccount studentaccount @relation(fields: [studentId], references: [studentId], onDelete: NoAction, onUpdate: NoAction, map: "enrollment_ibfk_1")
+  subject        subject        @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction, map: "enrollment_ibfk_2")
+  semester       semester       @relation(fields: [semesterId], references: [semesterId], onDelete: NoAction, onUpdate: NoAction, map: "enrollment_ibfk_3")
+
+  @@index([semesterId], map: "semesterId")
+  @@index([studentId], map: "studentId")
+  @@index([subjectId], map: "subjectId")
+}
+
+model room {
+  roomId    String     @id @db.VarChar(50)
+  latitude  Decimal    @db.Decimal(10, 8)
+  longitude Decimal    @db.Decimal(11, 8)
+  radius    Int
+  timeslot  timeslot[]
+}
+
+model semester {
+  semesterId          String       @id @db.VarChar(50)
+  semester_start_date DateTime     @db.Date
+  semester_end_date   DateTime     @db.Date
+  is_active           Boolean?     @default(true)
+  enrollment          enrollment[]
+}
+
+model studentaccount {
+  studentId       String            @id @db.VarChar(50)
+  name            String            @db.VarChar(255)
+  email           String            @unique(map: "email") @db.VarChar(255)
+  password        String            @db.VarChar(255)
+  faceEmbedding   Json?
+  attendance      attendance[]
+  captured_images captured_images[]
+  enrollment      enrollment[]
+}
+
+model subject {
+  subjectId       String            @id @db.VarChar(50)
+  name            String            @db.VarChar(255)
+  code            String            @unique(map: "code") @db.VarChar(50)
+  credit          Int
+  attendance      attendance[]
+  captured_images captured_images[]
+  classsession    classsession[]
+  enrollment      enrollment[]
+  timeslot        timeslot[]
+}
+
+model timeslot {
+  timeSlotId      String               @id @db.VarChar(50)
+  subjectId       String               @db.VarChar(50)
+  roomId          String?              @db.VarChar(50)
+  day_of_week     timeslot_day_of_week
+  start_time      DateTime             @db.Time(0)
+  end_time        DateTime             @db.Time(0)
+  start_date      DateTime?            @db.Date
+  end_date        DateTime?            @db.Date
+  active          Boolean?             @default(true)
+  captured_images captured_images[]
+  classsession    classsession[]
+  subject         subject              @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction, map: "timeslot_ibfk_1")
+  room            room?                @relation(fields: [roomId], references: [roomId], onDelete: NoAction, onUpdate: NoAction, map: "timeslot_ibfk_2")
+
+  @@index([roomId], map: "roomId")
+  @@index([subjectId], map: "subjectId")
+}
+
+enum timeslot_day_of_week {
+  Mon
+  Tue
+  Wed
+  Thu
+  Fri
+  Sat
+  Sun
+}
+
+enum classsession_session_status {
+  SCHEDULED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum captured_images_recognition_result {
+  SUCCESS
+  FAILED
+  NO_FACE
+}
+
+enum attendance_status {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
