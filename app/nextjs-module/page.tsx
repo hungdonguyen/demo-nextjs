@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import SkillChart from "@/components/SkillChart";
 
 export default function Page() {
+ 
   const moduleInfo = [
     {
       id: 1,

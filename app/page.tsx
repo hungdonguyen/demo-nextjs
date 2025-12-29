@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/c
 import ComparisonTable from "@/components/ComparisionTable";
 
 
-export default function Home() {
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 3000)); //Delay 3 giây để mô phỏng tải dữ liệu
   const topics = [
     {
       title: "Next.js là gì?",
