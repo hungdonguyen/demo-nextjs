@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import ComparisonTable from "@/components/ComparisionTable";
 
+
 export default function Home() {
   const topics = [
     {

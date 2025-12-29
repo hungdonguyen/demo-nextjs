@@ -33,7 +33,9 @@ export default function RootLayout({
       >
         <Providers>
           <div className="flex h-screen overflow-hidden">
+            <div className="">
             <Sidebar />
+            </div>
             <main className="flex-1 bg-yellow-50 dark:bg-gray-900 overflow-y-auto">
               {children}
             </main>

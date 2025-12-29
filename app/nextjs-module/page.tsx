@@ -1,7 +1,13 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import {motion} from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
+import { motion } from "framer-motion";
+import SkillChart from "@/components/SkillChart";
 
 export default function Page() {
   const moduleInfo = [
@@ -22,26 +28,30 @@ export default function Page() {
     },
   ];
   return (
-    
     <motion.div className="min-h-screen p-8 max-w-7xl mx-auto space-y-6">
       <motion.h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-          Kiến trúc Module (Feature-First)
-        </motion.h1>
+        Kiến trúc Module (Feature-First)
+      </motion.h1>
       <motion.p className="text-gray-500 dark:text-gray-400">
-          Tư duy tổ chức code hiện đại cho dự án Next.js
-        </motion.p>
+        Tư duy tổ chức code hiện đại cho dự án Next.js
+      </motion.p>
       <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {moduleInfo.map((info) => (
           <Card key={info.id} className="hover:shadow-xl transition-shadow">
             <CardContent className="pt-1">
-              <CardTitle className="mb-3 text-primary text-xl">{info.title}</CardTitle>
-              <CardDescription className="text-base leading-relaxed">{info.desc}</CardDescription>
+              <CardTitle className="mb-3 text-primary text-xl">
+                {info.title}
+              </CardTitle>
+              <CardDescription className="text-base leading-relaxed">
+                {info.desc}
+              </CardDescription>
             </CardContent>
           </Card>
         ))}
       </motion.div>
-
-      
+      <div className="mt-10 bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg border">
+        <SkillChart />
+      </div>
     </motion.div>
   );
 }
