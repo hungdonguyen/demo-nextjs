@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import ComparisonTable from "@/components/ComparisionTable";
 
-
 export default function Home() {
- 
   const topics = [
     {
       title: "Next.js là gì?",
@@ -24,7 +27,10 @@ export default function Home() {
     <nav>
       <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         {topics.map((topic) => (
-          <Card key={topic.title} className="group relative flex flex-col h-full rounded-[2rem] overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+          <Card
+            key={topic.title}
+            className="group relative flex flex-col h-full rounded-[2rem] overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+          >
             {topic.imageUrl && (
               <div className="relative h-64 w-full overflow-hidden">
                 <Image

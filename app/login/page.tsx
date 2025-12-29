@@ -44,37 +44,44 @@ export default function LoginPage() {
 
   const router = useRouter();
   const [loading, setLoading] = useState(false); // Trạng thái loading
-  
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setLoading(true); // Bắt đầu loading
     try {
       const response = await axios.post("/api/login", values);
-        if (response.data.success) {
-            console.log("Login successful:", response.data.user);
-            alert("Đăng nhập thành công! Chào " + response.data.user.name);
-            router.push("/"); // Chuyển đến trang chủ sau khi đăng nhập thành công
-        } else {
-            console.error("Login failed:", response.data.error);
-            alert("Đăng nhập thất bại: " + response.data.error);
-        }
+      if (response.data.success) {
+        console.log("Login successful:", response.data.user);
+        alert("Đăng nhập thành công! Chào " + response.data.user.name);
+        router.push("/"); // Chuyển đến trang chủ sau khi đăng nhập thành công
+      } else {
+        console.error("Login failed:", response.data.error);
+        alert("Đăng nhập thất bại: " + response.data.error);
+      }
     } catch (error: any) {
       console.error("Login error:", error);
-      
+
       // Hiển thị thông báo lỗi chi tiết
       if (error.response) {
         // Server đã phản hồi với status code khác 2xx
         const errorMessage = error.response.data?.error || "Đăng nhập thất bại";
         if (error.response.status === 401) {
-          alert("⚠️ Email hoặc mật khẩu không đúng!\n\nVui lòng kiểm tra lại thông tin đăng nhập.");
+          alert(
+            "⚠️ Email hoặc mật khẩu không đúng!\n\nVui lòng kiểm tra lại thông tin đăng nhập."
+          );
         } else if (error.response.status === 500) {
-          alert("❌ Lỗi server: " + errorMessage + "\n\nVui lòng thử lại sau hoặc liên hệ admin.");
+          alert(
+            "❌ Lỗi server: " +
+              errorMessage +
+              "\n\nVui lòng thử lại sau hoặc liên hệ admin."
+          );
         } else {
           alert("❌ " + errorMessage);
         }
       } else if (error.request) {
         // Request đã được gửi nhưng không nhận được response
-        alert("❌ Không thể kết nối đến server.\n\nVui lòng kiểm tra kết nối mạng.");
+        alert(
+          "❌ Không thể kết nối đến server.\n\nVui lòng kiểm tra kết nối mạng."
+        );
       } else {
         // Lỗi khác
         alert("❌ Đã xảy ra lỗi: " + error.message);

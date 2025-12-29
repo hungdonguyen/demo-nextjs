@@ -67,7 +67,14 @@
 // }
 
 "use client";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, LabelList } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  LabelList,
+} from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -75,9 +82,8 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"; // Component xịn của Shadcn
+} from "@/components/ui/chart";
 
-// 1. Định nghĩa màu sắc và tên hiển thị ở đây (Rất gọn)
 const chartConfig = {
   percent: {
     label: "Thực tế",
@@ -87,7 +93,7 @@ const chartConfig = {
     label: "Mục tiêu",
     color: "#f59e0b", // Màu cam
   },
-  // Bạn có thể map màu riêng cho từng skill nếu muốn
+  //map màu riêng cho từng skill
   javascript: { label: "JavaScript", color: "#3b64f6" },
   typescript: { label: "TypeScript", color: "#f6c343" },
   css: { label: "CSS", color: "#6f42c1" },
@@ -105,9 +111,9 @@ export default function SkillChartShadcn() {
       percent: 88,
       target: 95,
     },
-    { 
-      skill: "CSS", 
-      percent: 70, 
+    {
+      skill: "CSS",
+      percent: 70,
       target: 80,
     },
   ];
@@ -118,7 +124,6 @@ export default function SkillChartShadcn() {
         Language Chart (Shadcn Style)
       </h3>
 
-      {/* Container của Shadcn sẽ lo phần Responsive và Theme */}
       <ChartContainer config={chartConfig} className="h-full w-full">
         <BarChart
           accessibilityLayer
@@ -134,34 +139,38 @@ export default function SkillChartShadcn() {
             tickLine={false}
             axisLine={false}
             width={80}
-            // Không cần chỉnh fill color thủ công nữa, Shadcn lo hết
           />
           <XAxis type="number" hide />
 
-          {/* Tooltip xịn xò của Shadcn */}
           <ChartTooltip content={<ChartTooltipContent />} />
 
-          {/* Legend xịn xò của Shadcn */}
           <ChartLegend content={<ChartLegendContent />} />
 
-          {/* Cột dữ liệu - Màu trực tiếp */}
           <Bar
             dataKey="percent"
             layout="vertical"
-            fill="#3b82f6" // Màu xanh dương cho Thực tế
+            fill="#3b82f6"
             radius={[0, 4, 4, 0]}
             barSize={20}
           >
-            <LabelList dataKey="percent" position="right" formatter={(v: number) => `${v}%`} />
+            <LabelList
+              dataKey="percent"
+              position="right"
+              formatter={(v: number) => `${v}%`}
+            />
           </Bar>
           <Bar
             dataKey="target"
             layout="vertical"
-            fill="#f59e0b" // Màu cam cho Mục tiêu
+            fill="#f59e0b"
             radius={[0, 4, 4, 0]}
             barSize={20}
           >
-            <LabelList dataKey="target" position="right" formatter={(v: number) => `${v}%`} />
+            <LabelList
+              dataKey="target"
+              position="right"
+              formatter={(v: number) => `${v}%`}
+            />
           </Bar>
         </BarChart>
       </ChartContainer>

@@ -11,23 +11,23 @@ export default function LoginLoading() {
           {/* Skeleton cho Description */}
           <Skeleton className="h-4 w-64 mx-auto" />
         </CardHeader>
-        
+
         <CardContent className="space-y-6">
           {/* Skeleton cho Email Field */}
           <div className="space-y-2">
             <Skeleton className="h-4 w-16" /> {/* Label */}
             <Skeleton className="h-10 w-full" /> {/* Input */}
           </div>
-          
+
           {/* Skeleton cho Password Field */}
           <div className="space-y-2">
             <Skeleton className="h-4 w-20" /> {/* Label */}
             <Skeleton className="h-10 w-full" /> {/* Input */}
           </div>
-          
+
           {/* Skeleton cho Submit Button */}
           <Skeleton className="h-10 w-full" />
-          
+
           {/* Skeleton cho Footer links */}
           <div className="flex justify-between">
             <Skeleton className="h-4 w-32" />

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
 import { Providers } from "./providers";
 import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/700.css";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,14 +33,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-['Montserrat'] bg-[#0B1120]`}
       >
         <Providers>
-          <div className="flex h-screen overflow-hidden">
-            <div className="">
-            <Sidebar />
-            </div>
-            <main className="flex-1 bg-yellow-50 dark:bg-gray-900 overflow-y-auto">
-              {children}
-            </main>
-          </div>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+                <SidebarTrigger />
+              </header>
+              <main className="flex-1 bg-yellow-50 dark:bg-gray-900 overflow-y-auto p-4">
+                {children}
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
         </Providers>
       </body>
     </html>

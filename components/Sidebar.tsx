@@ -1,18 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-import {
-  Home,
-  Blocks,
-  Smartphone,
-  Moon,
-  Sun,
-  Globe,
-  LogIn,
-} from "lucide-react";
+import { 
+  Home, Blocks, Smartphone, Moon, Sun, Globe, LogIn, Menu 
+} from "lucide-react"; // Đừng quên import icon Menu
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type MenuItem =
@@ -35,6 +30,7 @@ export default function Sidebar() {
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false); 
   useEffect(() => {
     setMounted(true);
   }, []);
