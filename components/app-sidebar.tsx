@@ -67,27 +67,35 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
-                <SidebarMenuItem key={item.href}>
+                <SidebarMenuItem
+                  key={item.href}
+                  className="py-3 px-4 my-2 rounded-md"
+                >
                   <SidebarMenuButton asChild isActive={pathname === item.href}>
-                    <Link href={item.href}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                    <Link href={item.href} className="flex items-center gap-3">
+                      <item.icon className="h-5 w-5 md:h-6 md:w-6" />
+                      <span className="truncate text-base">{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
               
               {/* Dark Mode Toggle Button */}
-              <SidebarMenuItem>
+              <SidebarMenuItem className="py-3 px-4 my-2 rounded-md">
                 <SidebarMenuButton
+                  className="flex items-center gap-3"
                   onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 >
                   {mounted ? (
-                    theme === "light" ? <Moon /> : <Sun />
+                    theme === "light" ? (
+                      <Moon className="h-5 w-5 md:h-6 md:w-6" />
+                    ) : (
+                      <Sun className="h-5 w-5 md:h-6 md:w-6" />
+                    )
                   ) : (
-                    <Moon />
+                    <Moon className="h-5 w-5 md:h-6 md:w-6" />
                   )}
-                  <span suppressHydrationWarning>
+                  <span suppressHydrationWarning className="truncate text-base">
                     {mounted
                       ? theme === "light"
                         ? "Dark Theme"
