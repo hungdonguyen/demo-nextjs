@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardContent,
@@ -8,17 +9,17 @@ import {
 import ComparisonTable from "@/components/ComparisionTable";
 
 export default function Home() {
+  const t = useTranslations('home');
+
   const topics = [
     {
-      title: "Next.js là gì?",
-      description:
-        "Next.js là một Framework React được Vercel phát triển. Nó cung cấp các công cụ cần thiết để xây dựng một ứng dụng web hoàn chỉnh (Full-stack) mà React thuần không có sẵn.",
+      title: t('topics.what_is_nextjs.title'),
+      description: t('topics.what_is_nextjs.description'),
       imageUrl: "/next.svg",
     },
     {
-      title: "Lợi ích của Next.js?",
-      description:
-        "Hỗ trợ SEO tuyệt đối nhờ Server-Side Rendering (SSR). Tốc độ tải trang cực nhanh nhờ tối ưu hóa hình ảnh, font chữ và code splitting tự động.",
+      title: t('topics.benefits.title'),
+      description: t('topics.benefits.description'),
       imageUrl:
         "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
     },

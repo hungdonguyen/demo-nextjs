@@ -1,0 +1,125 @@
+{
+  "home": {
+    "title": "Chào mừng đến với Demo Next.js",
+    "topics": {
+      "what_is_nextjs": {
+        "title": "Next.js là gì?",
+        "description": "Next.js là một Framework React được Vercel phát triển. Nó cung cấp các công cụ cần thiết để xây dựng một ứng dụng web hoàn chỉnh (Full-stack) mà React thuần không có sẵn."
+      },
+      "benefits": {
+        "title": "Lợi ích của Next.js?",
+        "description": "Hỗ trợ SEO tuyệt đối nhờ Server-Side Rendering (SSR). Tốc độ tải trang cực nhanh nhờ tối ưu hóa hình ảnh, font chữ và code splitting tự động."
+      }
+    }
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "description": "Vui lòng nhập thông tin tài khoản của bạn",
+    "form": {
+      "email": "Email",
+      "password": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "loading": "Đang đăng nhập..."
+    },
+    "validation": {
+      "email_required": "Vui lòng nhập email",
+      "email_invalid": "Email không hợp lệ",
+      "password_min": "Mật khẩu phải có ít nhất 6 ký tự"
+    }
+  },
+  "module": {
+    "title": "Kiến trúc Module (Feature-First)",
+    "subtitle": "Tư duy tổ chức code hiện đại cho dự án Next.js",
+    "modules": {
+      "what_is_module": {
+        "title": "Module trong Next.js là gì?",
+        "description": "Là tư duy 'đóng gói' tính năng. Một module chứa trọn vẹn Giao diện (UI), Logic và API của tính năng đó. Nó giống như một Class trong OOP: che giấu sự phức tạp bên trong và chỉ mở ra những gì cần thiết để bên ngoài sử dụng."
+      },
+      "folder_structure": {
+        "title": "Cấu trúc thư mục Feature",
+        "description": "Code chính nằm trong `src/features/`. Mỗi tính năng (ví dụ: `auth`, `cart`) là một thư mục riêng chứa `components`, `hooks`, `types`. Thư mục `app/` chỉ đóng vai trò định tuyến (Routing) và gọi module ra hiển thị."
+      },
+      "workflow": {
+        "title": "Quy trình kết hợp (Workflow)",
+        "description": "Quy trình 3 bước chuẩn: (1) Viết logic trong `features/` -> (2) Export những thứ cần thiết qua file `index.ts` (Cổng giao tiếp) -> (3) Import gọn gàng vào `app/page.tsx`. Giúp code sạch, dễ tìm và dễ bảo trì."
+      }
+    }
+  },
+  "responsive": {
+    "lesson1": {
+      "title": "Bài 1: Tắc kè hoa",
+      "description": "Thử co giãn trình duyệt của bạn từ to xuống nhỏ xem!",
+      "mobile": "📱 Đây là Mobile (Đỏ)",
+      "tablet": "iPad / Tablet (Vàng)",
+      "desktop": "💻 Laptop / PC (Xanh)"
+    },
+    "lesson2": {
+      "title": "Bài 2: Chia cột thông minh",
+      "item": "Item"
+    },
+    "lesson3": {
+      "title": "Bài 3: Ẩn hiện nội dung",
+      "name": "Nguyễn Văn A",
+      "description": "Đây là đoạn mô tả. Trên điện thoại bạn sẽ không thấy cái cục tròn (Avatar) bên cạnh đâu. Vì đất chật người đông mà! Nhưng mở to màn hình lên thì nó sẽ hiện ra."    },
+    "lesson4": {
+      "title": "Bài 4: Chữ to chữ nhỏ",
+      "heading": "Responsive Text",
+      "description": "Dòng chữ này sẽ nhỏ xíu trên điện thoại để tiết kiệm chỗ, nhưng sẽ to dần lên khi bạn mở bằng máy tính để dễ đọc hơn."
+    },
+    "lesson5": {
+      "title": "Bài 5: Flex Wrap cho Tags",
+      "description": "Thử co nhỏ màn hình để xem các thẻ tự rớt xuống dòng nhé."    }
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "login": "Đăng nhập",
+    "module": "Module",
+    "responsive": "Responsive",
+    "language": "Ngôn ngữ"
+  },
+  "comparison": {
+    "headers": {
+      "criteria": "Tiêu chí",
+      "react": "React (Library)",
+      "nextjs": "Next.js (Framework)"
+    },
+    "rows": {
+      "nature": {
+        "criteria": "Bản chất",
+        "react": "Là thư viện UI (Chỉ lo phần Giao diện)",
+        "nextjs": "Là Framework (Giao diện + Routing + Backend)"
+      },
+      "rendering": {
+        "criteria": "Rendering",
+        "react": "Client-side (Render tại trình duyệt)",
+        "nextjs": "Server-side (Render tại máy chủ)"
+      },
+      "seo": {
+        "criteria": "SEO (Google)",
+        "react": "Thấp (Khó SEO)",
+        "nextjs": "Rất tốt (Tối ưu sẵn)"
+      },
+      "routing": {
+        "criteria": "Routing",
+        "react": "Cài thêm thư viện ngoài (React Router)",
+        "nextjs": "File-system (Tự động theo thư mục)"
+      }
+    }
+  },
+  "navigation": {
+    "language": "Ngôn ngữ"
+  },
+  "sidebar": {
+    "title": "Next.js Demo",
+    "menu": {
+      "home": "Next.js là gì?",
+      "module": "NextJs + module",
+      "responsive": "Responsive",
+      "login": "Trang đăng nhập"
+    },
+    "theme": {
+      "dark": "Chế độ tối",
+      "light": "Chế độ sáng"
+    }
+  }
+}

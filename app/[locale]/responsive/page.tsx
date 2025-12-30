@@ -1,9 +1,13 @@
+import { useTranslations } from "next-intl";
+
 export default function ReponsivePage() {
+  const t = useTranslations('responsive');
+
   return (
     <div className="p-10 space-y-10">
       <div className="text-center space-y-2">
-        <h2 className="text-xl font-bold">Bài 1: Tắc kè hoa</h2>
-        <p>Thử co giãn trình duyệt của bạn từ to xuống nhỏ xem!</p>
+        <h2 className="text-xl font-bold">{t('lesson1.title')}</h2>
+        <p>{t('lesson1.description')}</p>
         <div
           className="
           w-full h-32 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg
@@ -12,16 +16,16 @@ export default function ReponsivePage() {
           lg:bg-green-500   
         "
         >
-          <span className="block md:hidden">📱 Đây là Mobile (Đỏ)</span>
+          <span className="block md:hidden">{t('lesson1.mobile')}</span>
           <span className="hidden md:block lg:hidden">
-            iPad / Tablet (Vàng)
+            {t('lesson1.tablet')}
           </span>
-          <span className="hidden lg:block">💻 Laptop / PC (Xanh)</span>
+          <span className="hidden lg:block">{t('lesson1.desktop')}</span>
         </div>
       </div>
       {/* BÀI 2: LAYOUT LƯỚI */}
       <div className="space-y-2">
-        <h2 className="text-xl font-bold">Bài 2: Chia cột thông minh</h2>
+        <h2 className="text-xl font-bold">{t('lesson2.title')}</h2>
 
         <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -29,7 +33,7 @@ export default function ReponsivePage() {
               key={item}
               className="h-40 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 border-2 border-slate-300"
             >
-              Item {item}
+              {t('lesson2.item')} {item}
             </div>
           ))}
         </div>
@@ -37,18 +41,16 @@ export default function ReponsivePage() {
 
       {/* BÀI 3: ẨN HIỆN NỘI DUNG */}
       <div className="space-y-2">
-        <h2 className="text-xl font-bold">Bài 3: Ẩn hiện nội dung</h2>
+        <h2 className="text-xl font-bold">{t('lesson3.title')}</h2>
 
         <div className="flex gap-4 border p-4 rounded-xl">
           {/* Ảnh Avatar: Chỉ hiện trên Tablet trở lên */}
           <div className="hidden md:block w-20 h-20 bg-blue-200 rounded-full flex-shrink-0"></div>
 
           <div>
-            <h3 className="font-bold text-lg">Nguyễn Văn A</h3>
+            <h3 className="font-bold text-lg">{t('lesson3.name')}</h3>
             <p className="text-gray-600">
-              Đây là đoạn mô tả. Trên điện thoại bạn sẽ không thấy cái cục tròn
-              (Avatar) bên cạnh đâu. Vì đất chật người đông mà! Nhưng mở to màn
-              hình ra là nó xuất hiện liền.
+              {t('lesson3.description')}
             </p>
           </div>
         </div>
@@ -56,7 +58,7 @@ export default function ReponsivePage() {
 
       {/* BÀI 4: CHỮ CO GIÃN */}
       <div className="space-y-4 border-t pt-4">
-        <h2 className="text-xl font-bold">Bài 4: Chữ to chữ nhỏ</h2>
+        <h2 className="text-xl font-bold">{t('lesson4.title')}</h2>
         
         <div className="bg-slate-100 p-6 rounded-xl">
           <h1 className="font-extrabold text-blue-600 
@@ -64,7 +66,7 @@ export default function ReponsivePage() {
             md:text-4xl     
             lg:text-6xl     
           ">
-            Responsive Text
+            {t('lesson4.heading')}
           </h1>
           
           <p className="mt-2 text-slate-600
@@ -72,16 +74,15 @@ export default function ReponsivePage() {
             md:text-base    
             lg:text-lg      
           ">
-            Dòng chữ này sẽ nhỏ xíu trên điện thoại để tiết kiệm chỗ, 
-            nhưng sẽ to dần lên khi bạn mở bằng máy tính để dễ đọc hơn.
+            {t('lesson4.description')}
           </p>
         </div>
       </div>
 
       {/* BÀI 5: FLEX WRAP (TỰ XUỐNG DÒNG) */}
       <div className="space-y-4 border-t pt-4">
-        <h2 className="text-xl font-bold">Bài 5: Flex Wrap cho Tags</h2>
-        <p>Thử co nhỏ màn hình để xem các thẻ tự rớt xuống dòng nhé.</p>
+        <h2 className="text-xl font-bold">{t('lesson5.title')}</h2>
+        <p>{t('lesson5.description')}</p>
         
         <div className="flex flex-wrap gap-2">
           {[

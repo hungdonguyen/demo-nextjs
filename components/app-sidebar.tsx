@@ -2,9 +2,10 @@
 
 import { Home, Blocks, Smartphone, Moon, Sun, Globe, LogIn } from "lucide-react";
 import { useTheme } from "next-themes";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   Sidebar,
   SidebarContent,
@@ -15,11 +16,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export function AppSidebar() {
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('sidebar');
 
   useEffect(() => {
     setMounted(true);
@@ -27,27 +30,22 @@ export function AppSidebar() {
 
   const menuItems = [
     {
-      title: "What is Next.js?",
+      title: t('menu.home'),
       href: "/",
       icon: Home,
     },
     {
-      title: "NextJs + module",
+      title: t('menu.module'),
       href: "/nextjs-module",
       icon: Blocks,
     },
     {
-      title: "Responsive",
+      title: t('menu.responsive'),
       href: "/responsive",
       icon: Smartphone,
     },
     {
-      title: "Change Language",
-      href: "/language",
-      icon: Globe,
-    },
-    {
-      title: "Login Page",
+      title: t('menu.login'),
       href: "/login",
       icon: LogIn,
     },
@@ -58,7 +56,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="px-2 py-2">
           <h2 className="text-lg font-bold bg-gradient-to-r from-blue-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
-            Next.js Demo
+            {t('title')}
           </h2>
         </div>
       </SidebarHeader>
@@ -90,13 +88,16 @@ export function AppSidebar() {
                   <span suppressHydrationWarning className="text-base p-2">
                     {mounted
                       ? theme === "light"
-                        ? "Dark Theme"
-                        : "Light Theme"
-                      : "Dark Theme"}
+                        ? t('theme.dark')
+                        : t('theme.light')
+                      : t('theme.dark')}
                   </span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
+
+            {/* Language Switcher */}
+            <LocaleSwitcher />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

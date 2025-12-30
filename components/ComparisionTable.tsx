@@ -10,22 +10,25 @@ import {
 } from "@/components/ui/table";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function ComparisonTable() {
+  const t = useTranslations('comparison');
+
   // Data array cho các rows
   const firstrows = [
     {
-      value: "Tiêu chí",
+      value: t('headers.criteria'),
       className:
         "px-6 py-4 text-sm font-extrabold text-gray-500 dark:text-gray-400 uppercase tracking-wider",
     },
     {
-      value: "React (Library)",
+      value: t('headers.react'),
       className:
         "px-6 py-4 text-sm font-extrabold text-primary uppercase tracking-wider",
     },
     {
-      value: "Next.js (Framework)",
+      value: t('headers.nextjs'),
       className:
         "px-6 py-4 text-sm font-extrabold text-chart-3 uppercase tracking-wider",
     },
@@ -33,31 +36,31 @@ export default function ComparisonTable() {
 
   const rows = [
     {
-      criteria: "Bản chất",
-      react: "Là thư viện UI (Chỉ lo phần Giao diện)",
+      criteria: t('rows.nature.criteria'),
+      react: t('rows.nature.react'),
       reactStyle: "text-sm",
-      nextjs: "Là Framework (Giao diện + Routing + Backend)",
+      nextjs: t('rows.nature.nextjs'),
       nextjsStyle: "text-sm font-medium",
     },
     {
-      criteria: "Rendering",
-      react: "Client-side (Render tại trình duyệt)",
+      criteria: t('rows.rendering.criteria'),
+      react: t('rows.rendering.react'),
       reactStyle: "text-sm",
-      nextjs: "Server-side (Render tại máy chủ)",
+      nextjs: t('rows.rendering.nextjs'),
       nextjsStyle: "text-sm font-medium",
     },
     {
-      criteria: "SEO (Google)",
-      react: "Thấp (Khó SEO)",
+      criteria: t('rows.seo.criteria'),
+      react: t('rows.seo.react'),
       reactStyle: "text-sm text-destructive",
-      nextjs: "Rất tốt (Tối ưu sẵn)",
+      nextjs: t('rows.seo.nextjs'),
       nextjsStyle: "text-sm text-chart-2 font-bold",
     },
     {
-      criteria: "Routing",
-      react: "Cài thêm thư viện ngoài (React Router)",
+      criteria: t('rows.routing.criteria'),
+      react: t('rows.routing.react'),
       reactStyle: "text-sm",
-      nextjs: "File-system (Tự động theo thư mục)",
+      nextjs: t('rows.routing.nextjs'),
       nextjsStyle: "text-sm font-medium",
     },
   ];

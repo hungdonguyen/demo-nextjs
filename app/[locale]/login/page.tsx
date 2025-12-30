@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import axios from "axios"; // Nhớ cài axios: npm install axios
 import { useRouter } from "next/navigation"; // Để chuyển trang sau khi login
+import { useTranslations } from "next-intl";
 
 import {
   Card,
@@ -34,6 +35,7 @@ const loginSchema = z.object({
 });
 
 export default function LoginPage() {
+  const t = useTranslations('login');
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -100,9 +102,9 @@ export default function LoginPage() {
     >
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Đăng Nhập</CardTitle>
+          <CardTitle className="text-2xl text-center">{t('title')}</CardTitle>
           <CardDescription className="text-center text-gray-500">
-            Vui lòng nhập thông tin tài khoản của bạn
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -113,7 +115,7 @@ export default function LoginPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('form.email')}</FormLabel>
                     <FormControl>
                       <Input placeholder="" {...field} />
                     </FormControl>
@@ -126,7 +128,7 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Mật Khẩu</FormLabel>
+                    <FormLabel>{t('form.password')}</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="" {...field} />
                     </FormControl>
@@ -139,7 +141,7 @@ export default function LoginPage() {
                 className="w-full bg-blue-600 hover:bg-blue-700"
                 disabled={loading} // Vô hiệu hóa nút khi đang loading
               >
-                {loading ? "Đang đăng nhập..." : "Đăng Nhập"}
+                {loading ? t('form.loading') : t('form.submit')}
               </Button>
             </form>
           </Form>

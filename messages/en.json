@@ -1,0 +1,125 @@
+{
+  "home": {
+    "title": "Welcome to Next.js Demo",
+    "topics": {
+      "what_is_nextjs": {
+        "title": "What is Next.js?",
+        "description": "Next.js is a React Framework developed by Vercel. It provides the necessary tools to build a complete web application (Full-stack) that pure React doesn't have."
+      },
+      "benefits": {
+        "title": "Benefits of Next.js?",
+        "description": "Absolute SEO support thanks to Server-Side Rendering (SSR). Extremely fast page loading thanks to automatic image optimization, font optimization, and code splitting."
+      }
+    }
+  },
+  "login": {
+    "title": "Login",
+    "description": "Please enter your account information",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "loading": "Signing in..."
+    },
+    "validation": {
+      "email_required": "Please enter email",
+      "email_invalid": "Invalid email",
+      "password_min": "Password must be at least 6 characters"
+    }
+  },
+  "module": {
+    "title": "Module Architecture (Feature-First)",
+    "subtitle": "Modern code organization thinking for Next.js projects",
+    "modules": {
+      "what_is_module": {
+        "title": "What is Module in Next.js?",
+        "description": "It's the thinking of 'packaging' features. A module contains the complete UI, Logic, and API of that feature. It's like a Class in OOP: hiding internal complexity and only exposing what's necessary for external use."
+      },
+      "folder_structure": {
+        "title": "Feature Folder Structure",
+        "description": "Main code is in `src/features/`. Each feature (e.g., `auth`, `cart`) is a separate folder containing `components`, `hooks`, `types`. The `app/` folder only serves as routing and calls modules to display."
+      },
+      "workflow": {
+        "title": "Integration Workflow",
+        "description": "Standard 3-step process: (1) Write logic in `features/` -> (2) Export necessary things through `index.ts` (Interface) -> (3) Import cleanly into `app/page.tsx`. Helps keep code clean, easy to find, and maintain."
+      }
+    }
+  },
+  "responsive": {
+    "lesson1": {
+      "title": "Lesson 1: Color Breakpoints",
+      "description": "Try resizing your browser from large to small!",
+      "mobile": "📱 This is Mobile (Red)",
+      "tablet": "iPad / Tablet (Yellow)",
+      "desktop": "💻 Laptop / PC (Green)"
+    },
+    "lesson2": {
+      "title": "Lesson 2: Smart Column Division",
+      "item": "Item"
+    },
+    "lesson3": {
+      "title": "Lesson 3: Show/Hide Content",
+      "name": "Nguyen Van A",
+      "description": "This is a description. On mobile you won't see the round thing (Avatar) next to it. Because space is tight! But when you open the screen bigger, it will appear."    },
+    "lesson4": {
+      "title": "Lesson 4: Responsive Text",
+      "heading": "Responsive Text",
+      "description": "This text will be very small on mobile to save space, but will gradually get larger when you open it on a computer for better readability."
+    },
+    "lesson5": {
+      "title": "Lesson 5: Flex Wrap for Tags",
+      "description": "Try shrinking the screen to see the tags automatically drop to the next line."    }
+  },
+  "navigation": {
+    "home": "Home",
+    "login": "Login",
+    "module": "Module",
+    "responsive": "Responsive",
+    "language": "Language"
+  },
+  "comparison": {
+    "headers": {
+      "criteria": "Criteria",
+      "react": "React (Library)",
+      "nextjs": "Next.js (Framework)"
+    },
+    "rows": {
+      "nature": {
+        "criteria": "Nature",
+        "react": "UI Library (Only handles interface)",
+        "nextjs": "Framework (Interface + Routing + Backend)"
+      },
+      "rendering": {
+        "criteria": "Rendering",
+        "react": "Client-side (Render in browser)",
+        "nextjs": "Server-side (Render on server)"
+      },
+      "seo": {
+        "criteria": "SEO (Google)",
+        "react": "Low (Difficult SEO)",
+        "nextjs": "Excellent (Optimized ready)"
+      },
+      "routing": {
+        "criteria": "Routing",
+        "react": "Install additional library (React Router)",
+        "nextjs": "File-system (Automatic by folder)"
+      }
+    }
+  },
+  "navigation": {
+    "language": "Language"
+  },
+  "sidebar": {
+    "title": "Next.js Demo",
+    "menu": {
+      "home": "What is Next.js?",
+      "module": "NextJs + module",
+      "responsive": "Responsive",
+      "login": "Login Page"
+    },
+    "theme": {
+      "dark": "Dark Theme",
+      "light": "Light Theme"
+    }
+  }
+}

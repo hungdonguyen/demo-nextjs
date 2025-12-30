@@ -7,33 +7,36 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import SkillChart from "@/components/SkillChart";
 
 export default function Page() {
+  const t = useTranslations('module');
+
   const moduleInfo = [
     {
       id: 1,
-      title: "Module trong Next.js là gì?",
-      desc: "Là tư duy 'đóng gói' tính năng. Một module chứa trọn vẹn Giao diện (UI), Logic và API của tính năng đó. Nó giống như một Class trong OOP: che giấu sự phức tạp bên trong và chỉ mở ra những gì cần thiết để bên ngoài sử dụng.",
+      title: t('modules.what_is_module.title'),
+      desc: t('modules.what_is_module.description'),
     },
     {
       id: 2,
-      title: "Cấu trúc thư mục Feature",
-      desc: "Code chính nằm trong `src/features/`. Mỗi tính năng (ví dụ: `auth`, `cart`) là một thư mục riêng chứa `components`, `hooks`, `types`. Thư mục `app/` chỉ đóng vai trò định tuyến (Routing) và gọi module ra hiển thị.",
+      title: t('modules.folder_structure.title'),
+      desc: t('modules.folder_structure.description'),
     },
     {
       id: 3,
-      title: "Quy trình kết hợp (Workflow)",
-      desc: "Quy trình 3 bước chuẩn: (1) Viết logic trong `features/` -> (2) Export những thứ cần thiết qua file `index.ts` (Cổng giao tiếp) -> (3) Import gọn gàng vào `app/page.tsx`. Giúp code sạch, dễ tìm và dễ bảo trì.",
+      title: t('modules.workflow.title'),
+      desc: t('modules.workflow.description'),
     },
   ];
   return (
     <motion.div className="min-h-screen p-8 max-w-7xl mx-auto space-y-6">
       <motion.h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-        Kiến trúc Module (Feature-First)
+        {t('title')}
       </motion.h1>
       <motion.p className="text-gray-500 dark:text-gray-400">
-        Tư duy tổ chức code hiện đại cho dự án Next.js
+        {t('subtitle')}
       </motion.p>
       <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {moduleInfo.map((info) => (
