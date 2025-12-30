@@ -71,7 +71,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild isActive={pathname === item.href}>
                     <Link href={item.href}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span className="text-base p-2">{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -87,7 +87,7 @@ export function AppSidebar() {
                   ) : (
                     <Moon />
                   )}
-                  <span suppressHydrationWarning>
+                  <span suppressHydrationWarning className="text-base p-2">
                     {mounted
                       ? theme === "light"
                         ? "Dark Theme"
