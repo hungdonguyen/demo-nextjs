@@ -1,5 +1,20 @@
-import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
+
+// Mock data for users
+const mockUsers = [
+  {
+    email: "test@example.com",
+    password: "password123",
+    studentId: "12345",
+    name: "Test User"
+  },
+  {
+    email: "admin@example.com",
+    password: "admin123",
+    studentId: "67890",
+    name: "Admin User"
+  }
+];
 
 export async function POST(request: Request) {
     try {
@@ -12,46 +27,26 @@ export async function POST(request: Request) {
         if (!email || !password) {
             console.log("❌ Missing credentials");
             return NextResponse.json(
-                { error: "Email and password are required" }, 
+                { error: "Email and password are required" },
                 { status: 400 }
             );
         }
 
-        // Kiểm tra xem user có tồn tại không (debug)
-        const userExists = await db.studentaccount.findFirst({
-            where: { email: email },
-        });
-
-        if (!userExists) {
-            console.log("❌ Email not found in database:", email);
-            return NextResponse.json(
-                { error: "Email không tồn tại trong hệ thống" }, 
-                { status: 401 }
-            );
-        }
-
-        console.log("✅ User found:", { email: userExists.email, name: userExists.name });
-
-        // Kiểm tra password
-        const user = await db.studentaccount.findFirst({
-            where: {    
-                email: email,
-                password: password,
-            },
-        });
+        // Find user in mock data
+        const user = mockUsers.find(u => u.email === email && u.password === password);
 
         if (!user) {
-            console.log("❌ Password incorrect for email:", email);
+            console.log("❌ Invalid credentials for email:", email);
             return NextResponse.json(
-                { error: "Mật khẩu không đúng" }, 
+                { error: "Email hoặc mật khẩu không đúng" },
                 { status: 401 }
             );
         }
 
-        console.log("Login successful:", { 
-            studentId: user.studentId, 
+        console.log("Login successful:", {
+            studentId: user.studentId,
             name: user.name,
-            email: user.email 
+            email: user.email
         });
 
         return NextResponse.json({
@@ -66,7 +61,7 @@ export async function POST(request: Request) {
     } catch (error) {
         console.error("Login error:", error);
         return NextResponse.json(
-            { error: "Internal server error" }, 
+            { error: "Internal server error" },
             { status: 500 }
         );
     }

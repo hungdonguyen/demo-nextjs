@@ -1,2 +1,2 @@
-// Export prisma instance as 'db' for backwards compatibility
-export { prisma as db } from './prisma'
+// Database support removed - using mock data for login
+// export { prisma as db } from './prisma'

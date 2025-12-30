@@ -115,7 +115,8 @@
       "home": "What is Next.js?",
       "module": "NextJs + module",
       "responsive": "Responsive",
-      "login": "Login Page"
+      "login": "Login Page",
+      "maptesting": "Map Testing"
     },
     "theme": {
       "dark": "Dark Theme",

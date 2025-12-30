@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Blocks, Smartphone, Moon, Sun, Globe, LogIn } from "lucide-react";
+import { Home, Blocks, Smartphone, Moon, Sun, Globe, LogIn, ChartPie } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { MapPin } from "lucide-react";
 
 export function AppSidebar() {
   const { theme, setTheme } = useTheme();
@@ -49,6 +50,12 @@ export function AppSidebar() {
       href: "/login",
       icon: LogIn,
     },
+    {
+      title: t('menu.maptesting'),
+      href: "/map-testing",
+      icon: MapPin,
+    }
+    
   ];
 
   return (

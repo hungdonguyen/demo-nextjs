@@ -1,11 +1,12 @@
-import { PrismaClient } from './generated/prisma'
+// Database support removed - using mock data for login
+// import { PrismaClient } from './generated/prisma'
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined
-}
+// const globalForPrisma = globalThis as unknown as {
+//   prisma: PrismaClient | undefined
+// }
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  log: ['query', 'error', 'warn'],
-})
+// export const prisma = globalForPrisma.prisma ?? new PrismaClient({
+//   log: ['query', 'error', 'warn'],
+// })
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma

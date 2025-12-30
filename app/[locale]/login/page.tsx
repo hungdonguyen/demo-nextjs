@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import axios from "axios"; // Nhớ cài axios: npm install axios
 import { useRouter } from "next/navigation"; // Để chuyển trang sau khi login
 import { useTranslations } from "next-intl";
 
@@ -47,50 +46,29 @@ export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false); // Trạng thái loading
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
-    setLoading(true); // Bắt đầu loading
-    try {
-      const response = await axios.post("/api/login", values);
-      if (response.data.success) {
-        console.log("Login successful:", response.data.user);
-        alert("Đăng nhập thành công! Chào " + response.data.user.name);
-        router.push("/"); // Chuyển đến trang chủ sau khi đăng nhập thành công
-      } else {
-        console.error("Login failed:", response.data.error);
-        alert("Đăng nhập thất bại: " + response.data.error);
-      }
-    } catch (error: any) {
-      console.error("Login error:", error);
+  // Mock users data - no database needed
+  const mockUsers = [
+    { email: "test@example.com", password: "password123", name: "Test User" },
+    { email: "admin@example.com", password: "admin123", name: "Admin User" }
+  ];
 
-      // Hiển thị thông báo lỗi chi tiết
-      if (error.response) {
-        // Server đã phản hồi với status code khác 2xx
-        const errorMessage = error.response.data?.error || "Đăng nhập thất bại";
-        if (error.response.status === 401) {
-          alert(
-            "⚠️ Email hoặc mật khẩu không đúng!\n\nVui lòng kiểm tra lại thông tin đăng nhập."
-          );
-        } else if (error.response.status === 500) {
-          alert(
-            "❌ Lỗi server: " +
-              errorMessage +
-              "\n\nVui lòng thử lại sau hoặc liên hệ admin."
-          );
-        } else {
-          alert("❌ " + errorMessage);
-        }
-      } else if (error.request) {
-        // Request đã được gửi nhưng không nhận được response
-        alert(
-          "❌ Không thể kết nối đến server.\n\nVui lòng kiểm tra kết nối mạng."
-        );
+  function onSubmit(values: z.infer<typeof loginSchema>) {
+    setLoading(true);
+    
+    // Simulate loading time
+    setTimeout(() => {
+      const user = mockUsers.find(u => u.email === values.email && u.password === values.password);
+      
+      if (user) {
+        console.log("Login successful:", user);
+        alert("Đăng nhập thành công! Chào " + user.name);
+        router.push("/");
       } else {
-        // Lỗi khác
-        alert("❌ Đã xảy ra lỗi: " + error.message);
+        alert("⚠️ Email hoặc mật khẩu không đúng!\n\nThử: test@example.com / password123");
       }
-    } finally {
-      setLoading(false); // Kết thúc loading
-    }
+      
+      setLoading(false);
+    }, 1000);
   }
 
   return (
